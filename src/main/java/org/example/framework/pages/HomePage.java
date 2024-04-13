@@ -1,5 +1,9 @@
 package org.example.framework.pages;
 
+import org.example.framework.pages.footer.FooterGate;
+import org.example.framework.pages.account.AccountGate;
+import org.example.framework.pages.product.ProductGate;
+
 public class HomePage {
 
     public static HomePage create() {

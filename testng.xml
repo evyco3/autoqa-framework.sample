@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
-    <test  name="G:/java/autoqa-framework.sample" parallel="methods" thread-count="3">
+<suite name="autoQASuit">
+    <listeners>
+        <listener class-name="org.example.framework.utils.CustomTestListener"/>
+    </listeners>
+    <test name="autoQATest" parallel="methods">
         <classes>
-            <class name="org.example.tests.AccountTests"/>
+            <class name="org.example.tests.AccountTests">
+                <methods>
+                    <include name="TCRegister"/>
+                    <include name="TCLogin"/>
+                    <include name="TCAccountLinks"/>
+                    <include name="TCAddNewAddressBook"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

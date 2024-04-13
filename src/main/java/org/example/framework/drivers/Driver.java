@@ -16,9 +16,7 @@ public final class Driver {
         if (Objects.isNull(get())) {
             WebDriver driver = DriverFactory.getDriver(DriverFactory.BrowserType.CHROME);
             set(driver);
-//            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
-//            driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
-            driver.get("https://ecommerce.tealiumdemo.com/");
+           get().get("https://ecommerce.tealiumdemo.com/");
         }
     }
 

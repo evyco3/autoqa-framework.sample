@@ -1,12 +1,13 @@
-package org.example.framework.pages;
+package org.example.framework.pages.account;
 
 
 import org.example.framework.factories.PageObjectFactory;
+import org.example.framework.pages.BasePage;
 import org.example.framework.utils.FrameworkLogger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginPage extends BasePage{
+public class LoginPage extends BasePage {
 
     private final LoginForm loginForm;
     public LoginPage(){
@@ -43,6 +44,10 @@ public class LoginPage extends BasePage{
         @FindBy(css = ".error-msg")
         private WebElement loginFailMsg;
 
+        private LoginForm(){
+            waitForPageToLoad(getClass(), "Customer Login");
+        }
+
         private void setEmail(String email){
             sendKeys(getClass(),this.email,email,"email");
         }
@@ -53,7 +58,7 @@ public class LoginPage extends BasePage{
             clickWithJSExecutor(getClass(),this.loginBtn,"loginBtn");
         }
         private String getLoginSuccessMsg(){
-            return getText(getClass(),this.loginSuccessMsg,"login success msg");
+            return getTextUsingJavaScript(getClass(),this.loginSuccessMsg,"login success msg");
         }
         private String getLoginFailMsg(){
             return getText(getClass(),this.loginFailMsg,"login fail message");

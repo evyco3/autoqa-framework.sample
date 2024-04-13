@@ -1,14 +1,11 @@
-package org.example.framework.pages;
+package org.example.framework.pages.account;
 
-import org.example.framework.drivers.Driver;
 import org.example.framework.factories.PageObjectFactory;
+import org.example.framework.pages.BasePage;
 import org.example.framework.utils.FrameworkLogger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 
 public class RegisterPage extends BasePage {
 
@@ -22,7 +19,7 @@ public class RegisterPage extends BasePage {
      * Performs the registration process with the provided details.
      * After registration, navigates to the specified next page based on the scenario.
      */
-     public <T> T performRegistration(String firstName, String middleName, String lastName, String email, String password, String confirmPassword, Class<T> nextPageClass) {
+    public <T>T performRegistration(String firstName, String middleName, String lastName, String email, String password, String confirmPassword,Class<T>nextPageClass) {
         registrationForm.setFirstName(firstName);
         registrationForm.setMiddleName(middleName);
         registrationForm.setLastName(lastName);
@@ -72,32 +69,37 @@ public class RegisterPage extends BasePage {
         @FindBy(css = ".error-msg")
         private WebElement emailErrorMsg;
 
+        private RegistrationForm(){
+            waitForPageToLoad(getClass(), "Create New Customer Account");
+        }
+
+
         private void setFirstName(String firstname) {
-             sendKeys(getClass(),this.firstName, firstname, "firstName");
+            sendKeys(getClass(), this.firstName, firstname, "firstName");
         }
 
         private void setMiddleName(String middleName) {
-             sendKeys(getClass(),this.middleName, middleName, "middleName");
+            sendKeys(getClass(), this.middleName, middleName, "middleName");
         }
 
         private void setLastName(String lastName) {
-            sendKeys(getClass(),this.lastName, lastName, "lastName");
+            sendKeys(getClass(), this.lastName, lastName, "lastName");
         }
 
         private void setEmail(String email) {
-           sendKeys(getClass(),this.email, email, "email");
+            sendKeys(getClass(), this.email, email, "email");
         }
 
         private void setPassword(String password) {
-             sendKeys(getClass(),this.password, password, "password");
+            sendKeys(getClass(), this.password, password, "password");
         }
 
         private void setConfirmPassword(String confirmPassword) {
-             sendKeys(getClass(),this.confirmPassword, confirmPassword, "confirmPassword");
+            sendKeys(getClass(), this.confirmPassword, confirmPassword, "confirmPassword");
         }
 
         private void clickRegisterBtn() {
-            clickWithJSExecutor(getClass(),this.registerBtn,"Register button");
+            clickWithJSExecutor(getClass(), this.registerBtn, "Register button");
         }
 
         private String getRegistrationSuccessMsg() {
@@ -105,11 +107,14 @@ public class RegisterPage extends BasePage {
         }
 
         private String getPasswordErrorMsg() {
-            return getText(getClass(),passwordErrorMsg, "password error message");
+            return getText(getClass(), passwordErrorMsg, "password error message");
         }
 
         private String getEmailErrorMsg() {
-            return getText(getClass(),emailErrorMsg, "email error message");
+            return getText(getClass(), emailErrorMsg, "email error message");
+        }
+        private String getCurrentUtl(){
+            return getCurrentUrlUsingActionExecutor(RegisterPage.class);
         }
 
     }
