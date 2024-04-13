@@ -17,7 +17,7 @@ public final class FrameworkLogger {
                 logger.get().info("[{}] {}", className, message);
                 break;
             case DEBUG:
-                logger.get().debug("[{}] {}", className, message);
+                logger.get().debug("[{}] {}", className, message); // Add debug logging
                 break;
             case ERROR:
                 logger.get().error("[{}] {}", className, message);
